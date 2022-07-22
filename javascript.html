@@ -2,33 +2,34 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-   
-    <title>자바 스크립트</title>
-    <script tpye="text/javascript" src="ch06_1.js"></script>
-
-    <script type="text/javascript">
-        console.log("head  태그 안에 작성한 자바스크립트");
-
-    </script>
+    
+    <title>Document</title>
 </head>
-<script type="text/javascript">
-    console.log("head  태그와 bod 태그에 작성한 자바스크립트");
-
-</script>
 <body>
-    <script type="text/javascript">
-        console.log("body  태그 안에 작성한 자바스크립트");
 
-    </script>
+    <h2>배열</h2>
+    <p>var 변수명 = [값1 ,값2, 값3 ,...]<br>
+  
+        위와 같은 형식으로 사용
+    </p>
+    <p>배열에 담을수 있는 데이터 타입(자료형)은 제한이 없다</p>
+    <p>new  연산자와 Array 객체를 통해 생성 가능</p>
+    <p> var 변수명 = new Array(크기); <br>
+        var 변수명 = new Array(값1 , 값2 ,....)<br>
+    </p>
+    <hr>
+    <h2>19단 출력</h2>
+
     <div>
-        <button type="button"
-        onclick ="console.log('버튼을 클릭하여 스크립트실행')">실행</button> 
+        <input type="number" id="v1" min="1" max="19">
+        <button type="button" onclick ="f1();" > 확인 </button>
+        <label id="alert1" style="display:none; color : red">
+        <small>1 ~ 19사이의 값으로만 입력하세요</small>
+        </label>
     </div>
+
+    <div id ="res1"> </div>
+    <hr>
     
 </body>
-
-<script type="text/javascript">
-    console.log("body  태그 이후에 작성한 자바스크립트"); 
-
-</script>
 </html>
