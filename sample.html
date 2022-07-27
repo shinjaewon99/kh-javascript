@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+    <script type="text/javascript" src="ch09_1.js"></script>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <h2>인라인 이벤트 설정</h2>
+    <div>
+        <p>아래의 버튼을 클릭하면 이벤트가 발동됩니다.</p>
+        <button type="button" onclick ="alert('클릭 이벤트 발생!!')">클릭</button>
+
+    </div>
+
+    <hr>
+    <h2>이벤트 속성에 함수 연결</h2>
+    <div>
+        <p>아래의 버튼을 클릭하면 이벤트가 발생됩니다</p>
+        <button type="button" id="id_btn1">크릭! </button>
+
+    </div>
+
+    <script>
+        var btn1 =document.getElementById("id_btn1");
+        btn1.onclick = function(){ // callback 함수
+            alert("클릭 이벤트 발생!!");
+        };
+    </script>
+
+    <hr>
+    <h2>표준 이벤트 모델</h2>
+    <div>
+        <p>아래의 버튼을 클릭하면 이벤트가 발생됩니다</p>
+        <button type="button " id="id_btn2"> 클릭!</button>
+        <script>
+            
+            var btn2 = document.getElementById("id_btn2");
+            btn2.addEventListener("click",function(){alert("클릭");});
+        </script>
+
+    </div>
+
+    <hr>
+    <h2>이벤트 종류</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>load : 웹페이지의 정보(css, javascript , 이미지 등)가 로드 완료된 시점에발생</td>
+                <td>focus : 엘리먼트가 포커스를 받았을 때 발생</td>
+                <td>blur : 엘리먼트가 포커스를 잃었을 때 발생</td>
+                <td>reset : 리셋버튼을 눌렀을 때 발생</td>
+                <td>submit : 제출(submit)버튼을 눌렀을 때 발생</td>
+                <script>
+                window.onload = function(){
+                   
+                    var test1 = document.getElementById("id_test1")
+                    test1.value ="모든 페이지의 로드가 완료 되었습니다";
+
+                    test1.addEventListener("focus",
+                    function(){test1.value = "포커스를 받았습니다"});
+
+                    test1.addEventListener("blur" ,
+                    function(){test1.value = "포커스를 잃었습니다"});
+                    
+                    var form1 = document.getElementById("id_form1");
+                    form1.addEventListener("submit",
+                    function(e){
+
+                        if(!formValid()){
+                       e.preventDefault();
+                    }
+                }
+                );
+            }
+                    </script>
+            </tr>
+            <tr>
+                <td>fullscreenchange</td>
+                <td>resize</td>
+                <td>scroll</td>
+                <td>cut</td>
+                <td>copy</td>
+            </tr>
+            <tr>
+                <td>paste</td>
+                <td>keydown</td>
+                <td>keypress</td>
+                <td>keyup</td>
+                <td>mouseenter</td>
+            </tr>
+            <tr>
+                <td>mouseover</td>
+                <td>mousemove</td>
+                <td>mousedown</td>
+                <td>mouseup</td>
+                <td>click</td>
+            </tr>
+            <tr>
+                <td>dblclick</td>
+                <td>contextmenu</td>
+                <td>whell</td>
+                <td>mouseleave</td>
+                <td>mouseout</td>
+            </tr>
+            <tr>
+                <td>select</td>
+                <td>dragstart</td>
+                <td>drag</td>
+                <td>dragend</td>
+                <td>dragenter</td>
+            </tr>
+            <tr>
+                <td>dragover</td>
+                <td>dragleave</td>
+                <td>drop</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h3>이벤트 동작 확인용 요소들</h3>
+        <form action="/send/data/">
+            
+        <div>
+            <input type="text" id= "id_test1" name ="v1">
+        </div>
+
+        <div>
+            <input type="text" id= "id_test2" name="v2" >
+        </div>
+        <div>
+            <input type="reset" value = "리셋">
+            <input type="submit" value = "제출">
+           <button type="reset">리셋</button>
+           <button type="submit">제출</button>
+        </div>
+        
+    </form>
+    </div>
+
+    
+</body>
+</html>
