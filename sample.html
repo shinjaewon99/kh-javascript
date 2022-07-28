@@ -5,6 +5,11 @@
     
     <title>Document</title>
     <script type="text/javascript" src="ch09_1.js"></script>
+    <style>
+        td{
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>이벤트</h1>
@@ -45,7 +50,7 @@
 
     <hr>
     <h2>이벤트 종류</h2>
-    <table>
+    <table border ="1" style="border-collapse:collapse;">
         <tbody>
             <tr>
                 <td>load : 웹페이지의 정보(css, javascript , 이미지 등)가 로드 완료된 시점에발생</td>
@@ -66,10 +71,19 @@
                     function(){test1.value = "포커스를 잃었습니다"});
                     
                     var form1 = document.getElementById("id_form1");
+                    /* addEvenListener 참고
+                        동일한 이벤트에 addEventListener 메소드로 이벤트 함수를
+                        반복적으로 등록하는 경우 등록된 모든 이벤트가 실행됨
+                        가장 마지막에 등록한 이벤트가 가장 나중에 실행.
+                    */
                     form1.addEventListener("submit",
                     function(e){
+                        console.log(e)
 
-                        if(!formValid()){
+                        if(!formValid(e.target)){
+                            //기존에 등록된 이벤트가 정상적으로 동작을 하였어도
+                            //현재 이벤트 함수에 문제가 발생하면 , 이전 이벤트
+                            //함수도 정상동작이 아님을 알려서 실패하게 만듬
                        e.preventDefault();
                     }
                 }
@@ -78,17 +92,76 @@
                     </script>
             </tr>
             <tr>
-                <td>fullscreenchange</td>
-                <td>resize</td>
-                <td>scroll</td>
-                <td>cut</td>
-                <td>copy</td>
+                <td>fullscreenchange : 전체화면 모드로 전환되거나 다시 일반모드로 전환 될때 발생</td>
+                <td>resize : 브라우저 창의 크기를 조절할 때 발생</td>
+                <td>scroll : 스크롤을 동작 했을 때 발생</td>
+                <td>cut : 잘라내기 작업을 했을 때 발생</td>
+                <td>copy : 복사 작업을 했을 때 발생</td>
+                <script>
+                    window.addEventListener("load",
+                    function(){
+                        evenInsert();
+                    });
+                    function evenInsert(){
+                        document.addEventListener("fullscreenchange",
+                        function(){
+                            console.log(e);
+                            alert("풀스크린 이벤트 감지");
+                        });
+                        document.addEventListener("resize",
+                        function(){
+                            console.log("사이트 변경중")
+                        });
+
+                    }
+                </script>
+                <script>
+                    function evenInsert(){
+                     document.addEventListener("scroll",
+                     function(e){
+                         console.log(window.scrollY);
+                        
+                     }
+                     );
+                
+                     // Ctrl + x
+                    var test2 = document.getElementById("id_test2");
+                    test2.addEventListener("cut",
+                    function(){
+                     console.log("잘라내기 작업을 하였습니다");
+                    }
+                    );
+                
+                    // Ctrl + c
+                    test2.addEventListener("copy",
+                    function(){
+                     console.log("복사 작업을 하였습니다");
+                    }
+                    );
+                
+                    // Ctrl + v
+                
+                    test2.addEventListener("paste",
+                    function(){
+                     console.log("붙여넣기 작업을 하였습니다");
+                    }
+                    );
+                
+                 }
+                 window.addEventListener("load",
+                 function(){
+                     evenInsert();
+                 });
+                
+                </script>
+
+
             </tr>
             <tr>
-                <td>paste</td>
-                <td>keydown</td>
-                <td>keypress</td>
-                <td>keyup</td>
+                <td>paste : 붙여넣기 작업을 했을 때 발생</td>
+                <td>keydown : 임이의 키보드가 눌렸을 때 발생</td>
+                <td>keypress : 쉬프트 ,Fn , CapsLock을 제외한 키가 눌린상태일 때 발생(연속적으로 발생)</td>
+                <td>keyup : 키 누룸이 해제됐을 때 발생</td>
                 <td>mouseenter</td>
             </tr>
             <tr>
@@ -132,6 +205,11 @@
 
         <div>
             <input type="text" id= "id_test2" name="v2" >
+
+        </div>
+
+        <div>
+            <input type ="password" id ="id_test3" name ="v3">
         </div>
         <div>
             <input type="reset" value = "리셋">
